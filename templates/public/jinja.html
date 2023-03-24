@@ -1,0 +1,107 @@
+{% extends "/public/templates/public_templates.html" %}
+{% import "macro/input_macro.html" as im %}
+{% block title %} JInja {% endblock %}
+
+{% block main %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1> Jinja templates </h1>
+            <hr>
+            <h4> Variables </h4>
+            <hr>
+            <p> Name: {{ my_name }}</p>
+            <h1> Looping </h1>
+            <hr>
+            <ul>
+                {% for skill in skills %}
+                <li> {{ skill }}</li>
+                {% endfor %}
+            </ul>
+            <h1> Looping with index </h1>
+            <hr>
+            <ul>
+                {% for skill in skills %}
+                <li> {{ loop.index0 }}:{{ skill }} </li>
+                {% endfor %}
+            </ul>
+            <h1> looping thoriugh dicts</h1>
+            <hr>
+            <ul>
+                {% for u,k in friends.items() %}
+                <li> {{ u }}:{{ k }} </li>
+                {% endfor %}
+            </ul>
+
+        </div>
+    </div>
+    <div>
+        <h1>looping with keys</h1>
+        <hr>
+        <ul>
+            {% for u,k in friends.items() %}
+            <li> {{ u }} </li>
+            {% endfor %}
+        </ul>
+        <h1> Accesing list number </h1>
+        <hr>
+        <p> {{ my_remotes.name }}</p>
+        <p> {{ my_remotes.description }}</p>
+    </div>
+
+    <h1>call s functtion</h1>
+    <hr>
+    <p> {{ repeat("my name is udman",10 )}}</p>
+    <hr>
+    <h1>call a class methods </h1>
+    <hr>
+    <p> {{ my_remotes.clone() }}</p>
+
+    <h1> Conditional </h1>
+    <hr>
+    {% if not cool %}
+    <p>Cool is not {{ cool }}</p>
+    {% endif %}
+    <hr>
+
+    <h1> Math</h1>
+    <hr>
+    {{ age * 10 }}
+    <hr>
+    <h1> Conditional </h1>
+    <hr>
+    {% if age ==20 %}
+    <p>you may enter</p>
+    {% elif age > 20 %}
+    <p> Enter boss </p>
+    {% else %}
+    <p> sorry you cannot enter </p>
+    {% endif %}
+
+    <hr>
+    <h1> templates filter </h1>
+    <hr>
+    {{ friends|length }}
+    {{ my_name|reverse }}
+    {{ friends|join(",") }}
+
+    <hr>
+    <h1> custom templates filter</h1>
+    <p>{{ date|clean_date }}</p>
+    <hr>
+
+    {{ im.input(label="Your name",name="name",id="name",placeholder="Please enter your name" )}}
+    <br>
+    {{ im.input(label="Age",type="number",name="name",id="age",placeholder="Please enter your age" )}}
+    <br>
+    {{ im.input(label="Password",type="password",name="Password",id="Password",placeholder="Please enter your password"
+    )}}
+
+
+</div>
+
+
+
+
+
+{% endblock %}
